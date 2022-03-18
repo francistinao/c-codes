@@ -1,25 +1,28 @@
 /* A C++ program that identifies if the user's alphabet input is
-a vowel or a consonant using switch statement*/
+a vowel or a consonant using switch statement
+
+By Francis Tin-ao*/
 
 #include <stdio.h>
 
 using namespace std;
 
 int main(){
-    char input; //the users inputted letter
-    char isAlphabet; //value of the users input
-
-    printf("Enter a letter: ");
-    scanf("%c",&input);
-
-    //declares all the values of the alphabet datatype 
-    isAlphabet = ( input == 'a' || input == 'e' || input == 'i' || input == 'o' || input == 'u' || input == 'A' || input == 'E' || input == 'I' || input == 'O' || input == 'U');
+    //Algorithm updated: another way to execuse this program by using do-while loop
     
-    if(isAlphabet){
-        printf("%c is a VOWEL",isAlphabet);
-    } else {
-        printf("%c is a CONSONANT",isAlphabet);
-    }
+    char alphabet;
+
+    printf("Enter a alhapbet: ");
+    scanf("%c",&alphabet);
+              //Thus if alphabet is false, it will proceed on the do statement to execute the following code
+        do {
+            if (alphabet == 'a'||alphabet == 'e'||alphabet == 'i'|| alphabet =='o'|| alphabet == 'u' ||
+                alphabet == 'A' || alphabet == 'E' || alphabet == 'I' || alphabet == 'O' || alphabet == 'U'){
+                    printf("%c is a VOWEL",alphabet);
+                } else {
+                    printf("%c is a CONSONANT");
+                } 
+             } while (!alphabet); //Since the user must input a raw alphabet thefefore the initialization of the variable alphabet is False
 
     return 0;
 }   
