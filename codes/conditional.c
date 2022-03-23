@@ -107,3 +107,68 @@ int main() {
     }
 
 }
+  
+/* Write a C program to read the age of a candidate
+and determine whether it is eligable for casting 
+her/his own vote*/
+
+#include <stdio.h>
+
+int main(){
+    int age;
+
+    printf("Enter age: ");
+    scanf("%d",&age);
+
+    if(age>=18){
+        printf("Contratulations! You are eligible for casting your vote");
+    } else {
+        printf("You are not yet eligible for casting your vote");
+    }
+    return 0;
+}
+
+/* Write a C program to read any day number in integer and display day name in the word*/
+
+#include <stdio.h>
+
+int main() {
+    int day;
+
+    printf("Enter day: ");
+    scanf("%d",&day);
+
+    if(day > 7){
+        printf("You have entered an invalid day!");
+    } else {
+        switch(day) {
+             case 1:
+                printf("Monday");
+                break;
+
+            case 2:
+                printf("Tuesday");
+                break;
+            
+            case 3:
+                printf("Wednesday");
+                break;
+            
+            case 4:
+                printf("Thursday");
+                break;
+            case 5:
+                printf("Friday");
+                break;
+            
+            case 6: 
+                printf("Saturday");
+                break;
+            
+            case 7: 
+                printf("Sunday");
+                break;
+        }
+    }
+    return 0;
+}
