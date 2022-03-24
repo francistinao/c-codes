@@ -172,3 +172,51 @@ int main() {
     }
     return 0;
 }
+  
+/* Write a program in C to calculate nd print the Electricty bill of a given costumer. The costumer id, name and unit consumed by the user should be taken from the keyboard and display the total amount to pay to the costumer. The charge are as follow */
+
+#include <stdio.h>
+
+int main() {
+    char userId[4];
+    char name[10];
+    float formula,bill;
+
+    printf("Enter Costumer ID: ");
+    scanf("%s",&userId[4]);
+
+    printf("Enter Costumer Name: ");
+    scanf("%s",&name[10]);
+
+    printf("Enter electricity consumed: ");
+    scanf("%d",&bill);
+
+    printf("\nCostumer ID NO: %s",userId[4]);
+    printf("\nCostumer Name: %s",name[10]);
+    printf("\nUnit Consumed: %d",bill);
+    
+    if(bill<200){
+        formula = bill * 1.20;
+        printf("\nAmount Charges @Rs. 1.20 per unit: %f",formula);
+    } else if (bill>=200 && bill<400){
+        formula = bill * 1.50;
+        printf("\nAmount Charges @Rs. 1.50 pero unit: %f",formula);
+    } else if (bill >= 400 && bill < 600){
+        formula = bill * 1.80;
+        printf("\nAmount Charges @Rs. 1.80 per unit: %f",formula);
+    } else {
+        formula = bill * 2.00;
+        printf("\nAmount Charges @Rs. 2.00 per unit: 1600.00");
+    }
+
+
+    float surchage = bill * 0.15;
+    printf("\nSurchage Amount: %f",surchage);
+
+    if(bill>400) {
+        surchage += formula;
+        printf("\nNet Amount Paid By the Costumer: %f",surchage);
+    }
+
+    return 0;
+}
