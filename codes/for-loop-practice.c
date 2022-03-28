@@ -110,3 +110,19 @@ the first 10 natural numbers*/
 //     return 0;
 // }
 
+/* Write a program in C to display the multiplication table vertically from 1 to n*/
+
+// #include <stdio.h>
+
+// int main() {
+//     int i,j;
+
+//     for(i = 1; i<=10; i++){
+//         for(j = 1; j <=10; j++){
+//             printf("%d X %d = %d",i,j,i*j);
+//         }
+//         printf("\n");
+//     }
+//     return 0;
+// }
+
