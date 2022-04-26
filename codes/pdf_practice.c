@@ -138,7 +138,7 @@ int main() {
 
 int main() {
      int amount,response_two;
-     float purchase,discount,total_discount,sales_tax,total_amount;
+     float teacher_discount,purchase,discount,total_discount,sales_tax,total_amount;
      char response;
 
      printf("Welcome to Keith's Sheet Music! How may I help you?\n\n");
@@ -159,31 +159,22 @@ int main() {
                  printf("How much is your purchase?: ");
                  scanf("%f",&purchase);
 
-                     if(purchase >= 100){
-                         discount = purchase * 0.12;
-                         total_discount = purchase - discount;
-                         amount = purchase - total_discount;
-                         sales_tax = total_discount * .05;
-                         total_amount = total_discount + sales_tax;
-                             printf("\nTotal purchases:        $%d", purchase);
-                             printf("\nTeacher's discount 12%%  : %.2f",discount);
-                             printf("\nDiscounted Total:   %.2f",total_discount);
-                             printf("\nSales Tax (5%%) : %.2f",sales_tax);
-                             printf("\nYour total is $%.2f",total_amount);
-                             break;
-                     } else {
-                         discount = purchase * 0.10;
-                         total_discount = purchase - discount;
-                         amount = purchase - total_discount;
-                         sales_tax = total_discount * .05;
-                         total_amount = total_discount + sales_tax;
-                             printf("\nTotal purchases:        $%.2f", purchase);
-                             printf("\nTeacher's discount 10%%  : %.2f",discount);
-                             printf("\nDiscounted Total:   %.2f",total_discount);
-                             printf("\nSales Tax: (5%%) : %.2f",sales_tax);
-                             printf("\nYour total is $%.2f",total_amount);
-                             break;
-                         }
+                     if(purchase >= 100)
+                         teacher_discount = 0.12;
+                      else 
+                         teacher_discount = 0.10;
+                         
+                     discount = purchase * teacher_discount;
+                     total_discount = purchase - discount;
+                     amount = purchase - total_discount;
+                     sales_tax = total_discount * .05;
+                     total_amount = total_discount + sales_tax;
+                     printf("\nTotal purchases:        $%d", purchase);
+                     printf("\nTeacher's discount %.2f%%       %.2f",teacher_discount,discount);
+                     printf("\nDiscounted Total:   %.2f",total_discount);
+                     printf("\nSales Tax (5%%) : %.2f",sales_tax);
+                     printf("\nYour total is $%.2f",total_amount);
+                     break;
 
                  case 'N':
                      printf("How much is your purchase Brother/Sister?: ");
