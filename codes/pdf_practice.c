@@ -232,3 +232,33 @@ int main() {
 
      return 0;
 }
+
+/* Write a program that reports the contents of a compressed-gas cylinder based 
+on the first letter of the cylinder’s color. The program input is a character representing the observed color of the cylinder: ‘Y’ or ‘y’ for yellow, ‘O’ or ‘o’ for 
+orange, and so on. Cylinder colors and associated contents are as follows: 
+ orange ammonia 
+ brown carbon monoxide 
+ yellow hydrogen 
+ green oxygen */
+
+#include <stdio.h>
+#define OR ||
+
+int main() {
+    char color;
+    char elements[4][20] = {"ammonia","carbon monoxide","hydrogen","oxygen"};
+    
+    printf("Enter the color of the cylinder: ");
+    scanf("%c",&color);
+    
+    if(color=='O' OR color=='o') 
+        puts(elements[0]);
+     else if (color=='B' OR color=='b') 
+        puts(elements[1]);
+     else if (color=='Y' OR color=='y')
+        puts(elements[2]);
+     else if (color=='G' OR color=='g')
+        puts(elements[3]);
+     else 
+        printf("Invalid color");
+}
