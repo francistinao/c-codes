@@ -70,3 +70,26 @@ int main() {
     
     return 0;
 }
+
+/* Write a program which prints this: 
+ 0 1 
+ 1 2 
+ 2 4 
+ 3 8 
+ 4 16 
+ 5 32 
+ 6 64 */
+
+#include <stdio.h>
+
+int main() {
+    int i,j;
+
+    for(i = 0; i<7;i++) {
+        printf("\n");
+        for(j = 1; j < 65; j = j*2) {
+            printf("%d %d",i,j);
+        }
+    }
+    return 0;
+}
