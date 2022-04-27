@@ -167,3 +167,83 @@ the first 10 natural numbers*/
 //         printf("\n");
 //     }
 // }
+
+/* Ask for numbers from the user. Display:
+- All the inputted numbers
+- The number of inputs
+- Summation & Average of the inputted numbers.
+- Even numbers
+- Odd numbers
+
+Stop asking numbers if the input is ZERO
+Implement with functions and arrays
+
+Ex: inputs are 2,3,5,7,5 and 0 -> Input: 2,3,5,7,5
+                                  Count: 5
+                                  Sum: 22
+                                  Average: 4,4
+                                  Even: 2
+                                  Odd: 3,5,7,5 */
+
+#include <stdio.h>
+
+int num_of_arr(int *num,int count) {
+    int i; 
+    for(i = 0; i < count; i++) {
+        printf("%d ",num[i]);
+    }
+}
+
+int sum_of_arr(int *num,int count) {
+    int sum = 0,i;
+    for(i = 0; i < count; i++){
+        sum = sum + num[i];
+    }
+    return sum;
+}
+
+int ave_of_arr(int sum,int count) {
+    float ave;
+    ave = sum / count;
+    return ave;
+}
+
+int condition_of_arr(int *num,int count){
+    int i;
+    
+    printf("Even: ");
+    for(i = 0; i < count; i++) {
+        if(num[i]%2==0)
+            printf("%d ",num[i]);
+    }
+    printf("\nOdd: ");
+    for(i = 0; i < count; i++) {
+        if(num[i]%2==1) 
+            printf("%d ",num[i]);
+    }
+}
+
+int main() {
+    int num[10],count,sum;
+    int i;
+    float ave;
+    
+    printf("Enter the size of the array: ");
+    scanf("%d",&count);
+    
+    for(i = 0; i < count; i++) {
+        printf("Enter number: ");
+        scanf("%d",&num[i]);
+    }
+    
+    printf("Inputs: ");
+    num_of_arr(num,count);
+    printf("\n");
+    printf("Count: %d\n",count);
+    sum = sum_of_arr(num,count);
+    printf("Sum: %d\n",sum);
+    ave = ave_of_arr(sum,count);
+    printf("Average: %.2f",ave);
+    printf("\n");
+    condition_of_arr(num,count);
+}
