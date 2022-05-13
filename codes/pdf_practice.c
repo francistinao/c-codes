@@ -262,3 +262,24 @@ int main() {
      else 
         printf("Invalid color");
 }
+
+/* There are 9,870 people in a town whose population increases by 10% each
+year. Write a loop that displays the annual population and determines how
+many years ( count_years ) it will take for the population to surpass 30,000. */
+
+#include <stdio.h>
+
+int main(){
+    int popu = 9870,final_popu = 30000, count_year = 0;
+    int percent = final_popu * .10; // 3000 people will be added per year
+    
+    while(popu!=final_popu){
+        if(popu < final_popu){
+            popu = popu + percent;  
+            count_year++;
+        } else {
+            printf("%d Years",count_year);
+            break;
+        }
+    }
+}
