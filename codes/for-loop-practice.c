@@ -247,3 +247,29 @@ int main() {
     printf("\n");
     condition_of_arr(num,count);
 }
+
+/* Make a program that the user inputs a string and prints out the 
+string, number of vowels, and the vowels */
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+  char word_str[100];
+  int i = 0,numOfVowels = 0;
+
+  printf("Enter a string: ");
+  gets(word_str);
+  printf("String is: ");
+  puts(word_str);
+
+  printf("Vowels in the string:");
+   for(i = 0; i < strlen(word_str); i++){
+          if(word_str[i] == 'a' || word_str[i] == 'e' || word_str[i] == 'i' || word_str[i] == 'o' || word_str[i] == 'u' || word_str[i] == 'A' || word_str[i] == 'E' || word_str[i] == 'I' || word_str[i] == 'O' || word_str[i] == 'U') {
+              printf(" %c",word_str[i]);
+              numOfVowels += 1;
+          }
+   }   
+   printf("\nNumber of vowels in the string: %d",numOfVowels);
+}
