@@ -227,6 +227,7 @@ int bank_account_login(int choice,struct Client) {
                 main();
                 break;
             } else {
+                printf("Thank you! Come again");
                 return 0;
             }
        }
