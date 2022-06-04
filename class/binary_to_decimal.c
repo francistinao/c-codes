@@ -1,40 +1,40 @@
 /* Binary to decimal conversion using
 array of bits */
 
-// #include <stdio.h>
-// #include <string.h>
+#include <stdio.h>
+#include <string.h>
 
-// int bin_to_dec(char *binary) {
-//     const int bin_base = 2; 
-//     int i = strlen(binary) - 1, 
-//     total_dec_val = 0, 
-//     binary_value = 1;
+int numGetter(char *inp);
+int convert(char *inp);
 
-//     while(i >= 0) {
-//         switch(binary[i]) {
-//             case '1':
-//                total_dec_val+=binary_value;
-//                break;
+int main() {
+    char inp[100],binary_number[100],result;    
 
-//             case '0': 
-//                break;
-//         }
-//         binary_value *= bin_base;
-//         i-=1;
-//     }
+    numGetter(inp);
     
-//     return total_dec_val;
-// }
+    strcpy(binary_number, inp);
+    
+    printf("The binary nubmer is %s",binary_number);
+    printf("\nThe decimal is : %d",result = convert(inp));
+}
 
-// int main() {
-//     int converted;
-//     char binary[8];
+int numGetter(char *inp) {
+    printf("Enter a binary number: ");
+    scanf("%s",inp);
+}
 
-//     printf("Input binary num: ");
-//     scanf("%s",binary);
+int convert(char *inp) {
+    int decimal_num = 0, i = strlen(inp) - 1, base = 1;
 
-//     printf("The decimal result is: %d",converted = bin_to_dec(binary));
-// }
+    while(i >= 0) {
+        if(inp[i] == '1') { 
+            decimal_num += base; 
+        }
+        base*=2;
+        i--;
+    }
+    return decimal_num;
+}
 
 /* Another way to convert binary to decimal value */
 
@@ -69,9 +69,7 @@ int bin_to_dec_conversion(int binary_value) {
         decimal_value += bit*pow(2,i);
         binary_value/=10;
     }
-        
-        
-
+    
     return decimal_value;
 }
 
