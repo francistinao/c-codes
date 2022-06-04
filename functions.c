@@ -1,3 +1,4 @@
+
 // #include <stdio.h>
 
 // int pyramid_of_asterisk(int x, int y) {
@@ -24,11 +25,44 @@
 //     value_of_x_and_y(x,y);
 // }
 
-#include <stdio.h>
+/* Parameters 
 
-int main() {
-    int bin, dec;
+2 types of parameters : 
+    Actual parameters = The parameters passed to the function or what you call the arguments
+        example: conversion(x,y);
 
-    printf("Enter a binary number: ");
-    scanf("%d", &bin);
-}
+    Formal parameters = The parameters receive by a function
+        example: 
+                int conversion(int a, int b) {
+                    return a + b;
+                }
+
+Call by value
+    def: Here, values of actual parameters will be copied to formal
+    parameters and these two different parameters store values in 
+    different locations
+
+    Example: 
+        int x = 10, y = 20;
+        fun(x,y);
+
+        int fun(int x, int y) {
+            x = 20;
+            y = 10;
+        }
+
+        it will return x = 10, and y = 20
+        why? Simply because in your actual parameters 
+        is that you're just calling the value to pass it
+        inside a formal parameters inside the function
+        and not its variable
+
+Call by reference:
+    def: Here, both actual and formal parameters refers to 
+    some memory location. Therefore, any changes made to the formal
+    parameters will get reflected to actual parameters
+
+    * = dereference operator
+    & = adressof/reference operator
+
+*/
