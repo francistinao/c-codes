@@ -46,7 +46,7 @@ int quant_subtract(float amount,float total, float change, struct Costumer) {
 
         costumer.quantity -= quantity;
         if(amount >= total) {
-            
+            //Need more logic to deal with
         }
     } while (costumer.quantity > 0);
 }
