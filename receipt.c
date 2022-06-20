@@ -13,13 +13,15 @@ struct Cashier {
 struct Costumer {        //I use struct data declaration for readability of data so that when the data updates consecutively, I can track the value of the struct variables easily
     int quantity;
     float total_payment;
+    char name[1][100];
+    char address[1][100];
 }costumer;
 
 //User-defined functions
 char products(); //List of categories
 int receipt(float amount, float change, float tax, float VAT_amount, float total, struct Costumer); //print receipt
 int quant_subract(float amount, float total, float change, struct Costumer); //Quantity subtraction
-char cashier_info(float amount, float change, float tax, float VAT_amount, float total, struct Cashier); //Information about the cashier
+char cashier_and_costumer_info(float amount, float change, float tax, float VAT_amount, float total, struct Cashier); //Information about the cashier
 char check_amount(float change, float amount, struct Costumer,struct Cashier); //Function that prints the receipt
 int payment(float *priceP, struct Costumer); //Function that the program commands the buyer to pay the products he/she bought
 void rebuy(int prod_choice, float *priceP, struct Costumer); //Function where if the buyer wants to buy again
@@ -77,8 +79,8 @@ int receipt(float amount, float change, float tax, float VAT_amount, float total
     printf("\n\nCounter: %d    TIME END: 11:59",cashier.counter);
     printf("\nCASHIER: %s   %s",cashier.name,asctime(ptr));
     printf("\n06/19/2022    OR# 011-06430-00018");
-    printf("\nCostumer: ------------------------");
-    printf("\nAddress: -------------------------");
+    printf("\nCostumer: %s",costumer.name);
+    printf("\nAddress: %s",costumer.address);
     printf("\n     TIN #: ----------------------");
     printf("\n\nTHIS SERVES AS CASH SALES INVOICE &");
     printf("\nVALID 5 YEARS FROM DATE OF PERMIT TO USE");
@@ -100,7 +102,7 @@ char check_amount(float change,float amount,struct Costumer,struct Cashier) {
     recheck:
     if(amount >= total) {
         change = amount - total;
-        cashier_info(amount,change,VAT_amount,tax,total,cashier);
+        cashier_and_costumer_info(amount,change,VAT_amount,tax,total,cashier);
     } else if (amount < total) {
         printf("Your entered amount is less than the total price on your product");
         printf("\n\nDo you wish to subract the quantity of your products? [1] Yes/ [2] No: ");
@@ -121,8 +123,15 @@ char check_amount(float change,float amount,struct Costumer,struct Cashier) {
     }
 }
 
-char cashier_info(float amount, float change, float VAT_amount, float tax, float total, struct Cashier) {
-    printf("\n\nInput Cashier Name: ");
+char cashier_and_costumer_info(float amount, float change, float VAT_amount, float tax, float total, struct Cashier) {
+
+    printf("\nEnter Costumer Name: ");
+    scanf("%s",costumer.name);
+
+    printf("\nEnter Costumer Address: ");
+    scanf("%s",costumer.address);
+
+    printf("\nInput Cashier Name: ");
     scanf("%s",cashier.name);
 
     printf("Enter Counter Number: ");
