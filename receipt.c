@@ -113,6 +113,8 @@ char check_amount(float change,float amount,struct Costumer,struct Cashier) {
 
                 case 2:
                     printf("Transaction failed\n\n");
+                    costumer.total_payment = 0;
+                    costumer.quantity = 0;
                     main();
                     break;
             }
