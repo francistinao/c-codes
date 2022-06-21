@@ -16,7 +16,7 @@ Program made by Francis Tin-ao
 
 struct Client {
      char name[10];
-     int bankPin[4];
+     char bankPin[4];
      double balance,loan;
 }client;
 
@@ -122,7 +122,7 @@ int bank_options(struct Client) {
    char options[6][20] = {"[1]Balance","[2]Deposite","[3]Withdraw","[4]Loan","[5]Pay Loan","[6]Logout"};
 
     printf("\n\n---OPTIONS--- \n");
-    for(int i = 0; i < 7; i++){
+    for(int i = 0; i < 6; i++){
         for(int j = 0; j < 20; j++) {
             printf("%c",options[i][j]);
         }
@@ -181,22 +181,35 @@ int bank_login_successful(int choice, struct Client) {
 
 
  int bank_account_signup(int choice, struct Client) {
+     char ch;
      printf("Enter First Name: ");
-     scanf("%s",&client.name);
+     scanf("%s",client.name);
 
      printf("Create 4-Num PIN:  ");
-     scanf("%d",client.bankPin);
-     printf("Account successfully created!\n");
+     for(int i = 0; i < 4; i++) {
+        ch = getch();
+        client.bankPin[i] = ch;
+        ch = '*';
+        printf("%c",ch); 
+     }
+
+     printf("\n\nAccount successfully created!\n");
 
      main();
 }
 
 int bank_account_login(int choice,struct Client) {
-    int inputPin[4],client_choice;
+    char inputPin[4],ch;
+    int client_choice;
     int tries = 3;
 
     printf("Enter PIN: ");
-    scanf("%d",&inputPin);
+    for(int i = 0; i < 4; i++) {
+        ch = getch();
+        inputPin[i] = ch;
+        ch = '*';
+        printf("%c",ch);
+    }
 
     for(int i = 0; i < sizeof(inputPin); i++){
         if(inputPin[i] == client.bankPin[i]) {
@@ -205,7 +218,7 @@ int bank_account_login(int choice,struct Client) {
                break;
             }
         } else {
-            printf("Invalid! No existing client\n\n");
+            printf("\n\nInvalid! No existing client\n\n");
             printf("Would you like to login again? \n[1]Yes\n[2]No\n\nChoice: ");
             scanf("%d",&client_choice);
 
@@ -215,13 +228,18 @@ int bank_account_login(int choice,struct Client) {
                     printf("\nTries: %d",tries);
 
                     printf("\nRe-enter PIN: ");
-                    scanf("%d",&inputPin);
+                      for(int i = 0; i < 4; i++) {
+                        ch = getch();
+                        inputPin[i] = ch;
+                        ch = '*';
+                        printf("%c",ch);
+                    }
 
                     if(inputPin[i]==client.bankPin[i]) {
                        bank_login_successful(choice,client);
                        break;
                     }
-                    printf("Invalid user");
+                    printf("\nInvalid user");
                 }
                 printf("\nYou have exceeded the limit of re-entering PIN\n\n\n");
                 main();
