@@ -18,6 +18,7 @@ struct Client {
      double balance,loan;
 }client;
 
+FILE *userfiles; //File Handling
 
 //Function to create a new account 
 //needs to work
