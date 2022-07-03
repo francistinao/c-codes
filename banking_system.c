@@ -2,11 +2,9 @@
 contains the functionalities of how
 a banking system works. It consist
 of all the basics of fundamentals of programming
-
 The program couldn't create multiple client
 accounts since the program only consist 1 sub variable
 for the structure
-
 Program made by Francis Tin-ao
 */
 
@@ -19,6 +17,51 @@ struct Client {
      char bankPin[4];
      double balance,loan;
 }client;
+
+
+//Function to create a new account 
+//needs to work
+
+// int cash_transfer(struct Client) {
+//     printf("");
+// }
+
+// char enter_password(struct Client,char ch) {
+//     client.bankPin[4] = '';
+//     printf("Enter new password: ");
+//     for(int i = 0; i < 4; i++) {
+//         ch = getch();
+//         client.bankPin[i] = ch;
+//         ch = '*';
+//         printf("%c",ch); 
+//      }
+// }
+
+// char change_password(struct Client) {
+//     char current_password[4];
+//     char ch;
+
+//     printf("Enter current password: ");
+//     for(int i = 0; i < 4; i++) {
+//         ch = getch();
+//         current_password[i] = ch;
+//         ch = '*';
+//         scanf("%c", &ch);
+//     }
+
+//     for(int i = 0; i < 4; i++) {
+//         if(current_password[i] == client.bankPin[i]) {
+//             printf("Password matched\n");
+//             enter_password(client,ch);
+//             break;
+//         }
+//         else {
+//             printf("Password incorrect\n");
+//             i--;
+//             continue;
+//         }
+//     }
+// }
 
 int client_pay_loan(struct Client) {
     if(client.balance != 0) {
@@ -96,7 +139,6 @@ int client_withdraw(struct Client) {
         printf("The client's balance is empty");
         bank_options(client);
     }
-
 }
 
 int client_deposit(struct Client) {
@@ -119,11 +161,11 @@ int client_deposit(struct Client) {
 
 int bank_options(struct Client) {
    int client_bank_choice;
-   char options[6][20] = {"[1]Balance","[2]Deposite","[3]Withdraw","[4]Loan","[5]Pay Loan","[6]Logout"};
+   char options[8][30] = {"[1]Balance","[2]Deposite","[3]Withdraw","[4]Loan","[5]Pay Loan","[6]Cash Transfer","[7]Change Password","[8]Logout"};
 
     printf("\n\n---OPTIONS--- \n");
-    for(int i = 0; i < 6; i++){
-        for(int j = 0; j < 20; j++) {
+    for(int i = 0; i < 8; i++){
+        for(int j = 0; j < 30; j++) {
             printf("%c",options[i][j]);
         }
         printf("\n");
@@ -155,6 +197,14 @@ int bank_options(struct Client) {
             break;
 
         case 6:
+            // cash_transfer(client);
+            break;
+
+        case 7:
+            // change_password(client);
+            break;
+
+        case 8:
             main();
             break;
 
@@ -200,7 +250,7 @@ int bank_login_successful(int choice, struct Client) {
 
 int bank_account_login(int choice,struct Client) {
     char inputPin[4],ch;
-    int client_choice;
+    int client_choice,cl_choice;
     int tries = 3;
 
     printf("Enter PIN: ");
@@ -244,6 +294,17 @@ int bank_account_login(int choice,struct Client) {
                 printf("\nYou have exceeded the limit of re-entering PIN\n\n\n");
                 main();
                 break;
+            } else if(client_choice == 2){
+                printf("Would you like create another account? \n[1]Yes\n[2]No\n\nChoice:   ");
+                scanf("%d",&cl_choice);
+
+                // switch(cl_choice) {
+                //     case 1:
+                //         // for(int i = 0; i; i++) {
+
+                //         // }
+                //         break;
+                // }
             } else {
                 printf("Thank you! Come again");
                 return 0;
@@ -274,6 +335,5 @@ int main(void) {
         main();
         break;
   }
-
   return 0;
 }
