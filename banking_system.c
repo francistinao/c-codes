@@ -23,46 +23,45 @@ FILE *userfiles; //File Handling
 //Function to create a new account 
 //needs to work
 
-// int cash_transfer(struct Client) {
-//     printf("");
-// }
+int cash_transfer(struct Client) {
+    printf("");
+}
 
-// char enter_password(struct Client,char ch) {
-//     client.bankPin[4] = '';
-//     printf("Enter new password: ");
-//     for(int i = 0; i < 4; i++) {
-//         ch = getch();
-//         client.bankPin[i] = ch;
-//         ch = '*';
-//         printf("%c",ch); 
-//      }
-// }
+char enter_password(struct Client,char ch) {
+    printf("Enter new password: ");
+    for(int i = 0; i < 4; i++) {
+        ch = getch();
+        client.bankPin[i] = ch;
+        ch = '*';
+        printf("%c",ch); 
+     }
+}
 
-// char change_password(struct Client) {
-//     char current_password[4];
-//     char ch;
+char change_password(struct Client) {
+    char current_password[4];
+    char ch;
 
-//     printf("Enter current password: ");
-//     for(int i = 0; i < 4; i++) {
-//         ch = getch();
-//         current_password[i] = ch;
-//         ch = '*';
-//         scanf("%c", &ch);
-//     }
+    printf("Enter current password: ");
+    for(int i = 0; i < 4; i++) {
+        ch = getch();
+        current_password[i] = ch;
+        ch = '*';
+        scanf("%c", &ch);
+    }
 
-//     for(int i = 0; i < 4; i++) {
-//         if(current_password[i] == client.bankPin[i]) {
-//             printf("Password matched\n");
-//             enter_password(client,ch);
-//             break;
-//         }
-//         else {
-//             printf("Password incorrect\n");
-//             i--;
-//             continue;
-//         }
-//     }
-// }
+    for(int i = 0; i < 4; i++) {
+        if(current_password[i] == client.bankPin[i]) {
+            printf("Password matched\n");
+            enter_password(client,ch);
+            break;
+        }
+        else {
+            printf("Password incorrect\n");
+            i--;
+            continue;
+        }
+    }
+}
 
 int client_pay_loan(struct Client) {
     if(client.balance != 0) {
@@ -114,7 +113,7 @@ int client_loan(struct Client) {
 }
 
 int client_withdraw(struct Client) {
-    const float MIN_WITH_AMOUNT = 1000;
+    const float MIN_WITH_AMOUNT = 1000;-
     float amount;
 
     printf("The  MINIMUM withdrawal amount is %.2f\n\n",MIN_WITH_AMOUNT);

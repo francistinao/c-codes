@@ -83,3 +83,54 @@
      return 0; 
  }
 
+/* Practicing
+3d Array
+
+Declaration:
+
+int array[2][4][6] where [2] is the 
+count of 2D arrays and [4] is the number of
+rows in the selected array while
+[6] is the number of columns in the selected array.
+
+*/
+
+//Example
+
+#include <stdio.h>
+
+int main() {
+    int arr[2][4][6];
+
+    //to access the first 2d array, first row and first column
+    //it should be
+
+    arr[0][0][0]; //This is the first 2d array selected with 
+    //the first row and first column that is also selected
+
+
+    //Declaration in much better method
+
+    int a[2][2][3] = {
+            {
+                {1, 2, 3},
+                {4, 5, 6}
+            },
+            {
+                {7, 8, 9},
+                {10, 11, 12}
+            }
+        };  
+    }
+
+    //Accessing the 3d array
+    int i,j,k;
+
+    for(i = 0; i < 2; i++) {
+        for(j = 0; j < 2; j++) {
+            for(k = 0; k < 3; k++) {
+                printf("%d",a[i][j][k]);
+            }
+        }
+    }
+}
