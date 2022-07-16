@@ -7,6 +7,7 @@ Work in Progress*/
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 
 FILE* client_files;
 
@@ -20,9 +21,10 @@ struct Client {
     double balance,loan;
 }client;
 
-const int MIN_AMOUNT_DEPOSITE = 500,MIN_AMOUNT_WITHDRAW = 100;
+const int MIN_AMOUNT_DEPOSITE = 500, MIN_AMOUNT_WITHDRAW = 1000;
 
 //Functions
+int client_withdraw(struct Client);
 int client_deposit(struct Client);
 void login_successful(struct Client);
 void bank_account_login(struct Client);
@@ -58,6 +60,31 @@ int main() {
             break;
     }
 }
+int client_withdraw(struct Client) {
+    float amount;
+
+    printf("The  MINIMUM withdrawal amount is PHP %d.00\n",MIN_AMOUNT_WITHDRAW);
+
+    printf("Enter amount: ");
+    scanf("%f",&amount);
+
+    if(client.balance != 0) {
+        if(amount >= MIN_AMOUNT_WITHDRAW) {
+            if(amount <= client.balance) {
+                client.balance-=amount;
+                printf("The withdraw is successful");
+            } else {
+                printf("The amount inputted is GREATER than the client's balance");
+    
+                }
+        } else if (amount < MIN_AMOUNT_WITHDRAW) {
+            printf("The amount inputted did not exceed the MINIMUM Withdrawal amount");
+        }
+    } else {
+        printf("The client's balance is empty");
+    }
+    login_successful(client);
+}
 
 int client_deposit(struct Client) {
     float amount;
@@ -80,10 +107,10 @@ void login_successful(struct Client) {
     char menu[][100] = {"Balance","Deposite","Withdraw","Loan","Pay Loan","Cash Transfer","Change Password","Logout"},answer;
     int ROW = sizeof(menu)/sizeof(menu[0]),menu_choice,count = 1;
 
-    printf("GARUDA NATIONAL BANK\n\n");
+    printf("\n\nGARUDA NATIONAL BANK\n\n");
     printf("WELCOME! %s %s\n",client.first_name,client.last_name);
-    printf("Balance: %.2f\n",client.balance);
-    printf("Loan: %.2f",client.loan);
+    printf("Balance: PHP %.2f\n",client.balance);
+    printf("Loan: PHP %.2f",client.loan);
 
     printf("\n\n---OPTIONS--- \n");
     for(int i = 0; i < ROW; i++) {
@@ -95,15 +122,21 @@ void login_successful(struct Client) {
     scanf("%d",&menu_choice);
     switch(menu_choice) {
         case 1:
-            printf("Balance is: PHP%.2lf\n\n",client.balance);
-            system("cls");
+            fprintf(client_files,"The balance is PHP %.2f\n",client.balance);
             break;
 
         case 2:
             client_deposit(client);
-            system("cls");
             break;
 
+        case 3:
+            client_withdraw(client);
+            break;
+
+        case 8:
+            main();
+            break;
+            
         default:
             printf("Invalid choice");
             break;
@@ -113,7 +146,7 @@ void login_successful(struct Client) {
         scanf(" %c",&answer);
 
         if(answer == 'Y' || answer == 'y') {
-            system("cls");
+    
             login_successful(client);
         } else {
             printf("Thank you for coming to Garuda National Bank.\n");
@@ -143,10 +176,10 @@ void bank_account_login(struct Client) {
             printf("\n\nInvalid pin!\n");
             printf("Would you like to login again? [Y/N]:  ");
             scanf(" %c",&login_again);
+            toupper(login_again);
 
             switch(login_again) {
                 case 'Y':
-                case 'y':
                     int tries = 3;
                     while(tries >= 1) {
                         tries--;
@@ -159,7 +192,6 @@ void bank_account_login(struct Client) {
                             printf("====Account login sucessful====\n");
                             login_successful(client);
                             break;
-                            break;
                         } 
                     }
                     printf("\nYou have exceeded the limit of re-entering PIN\n\n\n");
@@ -167,7 +199,6 @@ void bank_account_login(struct Client) {
                     break;
 
                 case 'N':
-                case 'n':
                     main();
                     break;
             }
@@ -183,7 +214,7 @@ void create_account(struct Client) {
     
     do {
         printf("====CREATE AN ACCOUNT====\n\n");
-        client_files = fopen("client_info.txt","a");
+        client_files = fopen("client_info.txt","a"); //append mode
 
         printf("Enter first name: ");
         scanf("%s",&client.first_name);
@@ -219,6 +250,7 @@ void create_account(struct Client) {
                     client.bank_pin = 0;
                     printf("Enter PIN again: ");
                     scanf("%d",&client.bank_pin);
+                    
                     //If the password is now a 4-digit password
                     if(client.bank_pin >= 1000 && client.bank_pin <= 9999) {
                         main();
@@ -236,8 +268,8 @@ void create_account(struct Client) {
         fwrite(&client,sizeof(struct Client),1,client_files);
         fclose(client_files);
 
-        printf("\nDo you want to create another account? [Y/N] "); 
-        scanf(" %c",&choice);
-    } while(choice == 'Y');
+        printf("\nDo you want to create another account? [Y/N]: "); 
+        scanf(" %c",&choice); 
+    } while(choice == 'Y' || choice == 'y');
     if(choice == 'N') main();
 }
